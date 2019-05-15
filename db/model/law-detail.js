@@ -11,7 +11,11 @@ const lawDetail = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'LawCountry' //这里要写你指向的数据库表名字
   },
-  service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LawService' }],
+  // service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LawService' }],
+  service: {
+    type: String,
+    delete: ''
+  },
   name: {
     type: String,
     required:true
@@ -43,6 +47,10 @@ const lawDetail = mongoose.Schema({
   created_time: {
     type: Number,
     required: true
+  },
+  fax: {
+    type: String,
+    delete: ''
   }
 });
 //根据schema生成model

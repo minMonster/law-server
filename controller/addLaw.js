@@ -157,7 +157,8 @@ const addLawDetail = async (params) => {
     email: params.email || '',
     website: params.website || '',
     introduce: params.introduce || '',
-    service: params.service || []
+    service: params.service || '',
+    fax: params.fax || ''
   });
   return new Promise((resolve, reject) => {
     lawDetail.save((e, data) => {
@@ -250,17 +251,17 @@ const addLaw = async (ctx) => {
   let lawArea = null;
   let lawCountry = null;
   let lawDetail = null;
-  let service = [];
-  let lawService = body.law_service.split(',');
-  lawService = uniq(lawService);
-  let arr = lawService.map(async name => {
-    return await addLawService(name);
-  });
+  // let service = [];
+  // let lawService = body.law_service.split(',');
+  // lawService = uniq(lawService);
+  // let arr = lawService.map(async name => {
+  //   return await addLawService(name);
+  // });
   try {
-    service = await Promise.all(arr);
-    let newService = service.map(value => {
-      return value._id;
-    });
+    // service = await Promise.all(arr);
+    // let newService = service.map(value => {
+    //   return value._id;
+    // });
     lawArea = await addLawArea(body.law_area);
     lawCountry = await addLawCountry({name: body.law_country, area_id: lawArea._id});
     lawDetail = await addLawDetail({
@@ -270,9 +271,10 @@ const addLaw = async (ctx) => {
       logo: body.law_logo,
       address: body.law_address,
       email: body.law_email,
-      service: newService,
+      service: body.law_service,
       website: body.law_website,
       phone: body.law_phone,
+      fax: body.law_fax,
       introduce: body.law_introduce
     });
   } catch (e) {
@@ -288,7 +290,51 @@ const addLaw = async (ctx) => {
     };
   }
 };
-
+const jsonData = require('../demo.json');
+const Demo = async (ctx) => {
+  for (let i = 0;i < jsonData.length; i++ ){
+    let body = jsonData[i];
+    let lawArea = null;
+    let lawCountry = null;
+    let lawDetail = null;
+    // let service = [];
+    // let lawService = body.law_service.split(',');
+    // lawService = uniq(lawService);
+    // let arr = lawService.map(async name => {
+    //   return await addLawService(name);
+    // });
+    try {
+      // service = await Promise.all(arr);
+      // let newService = service.map(value => {
+      //   return value._id;
+      // });
+      lawArea = await addLawArea(body.law_area);
+      lawCountry = await addLawCountry({name: body.law_country, area_id: lawArea._id});
+      lawDetail = await addLawDetail({
+        name: body.law_name,
+        area_id: lawArea._id,
+        country_id: lawCountry._id,
+        logo: body.law_logo,
+        address: body.law_address,
+        email: body.law_email,
+        service: body.law_service,
+        website: body.law_website,
+        phone: body.law_phone,
+        fax: body.law_fax,
+        introduce: body.law_introduce
+      });
+    } catch (e) {
+      ctx.status = 499;
+      ctx.body = {
+        error_message: e.message
+      };
+    }
+  }
+  ctx.status = 200;
+  ctx.body = {
+    a: jsonData
+  };
+};
 module.exports = {
   findLawArea,
   findLawCountry,
@@ -296,5 +342,6 @@ module.exports = {
   addLaw,
   addLawCountry,
   addLawDetail,
-  getCountry
+  getCountry,
+  Demo
 };

@@ -12,7 +12,7 @@ const findLawDetail = (params) => {
       .skip((page - 1) * limit)
       .populate('area', 'name')
       .populate('country', 'name')
-      .populate('service', 'name')
+      // .populate('service', 'name')
       .exec((err, data) => {
         if (err) {
           reject(err);
@@ -65,7 +65,7 @@ const getLawDetail = async (ctx) => {
         .findOne({_id: country})
         .populate('area', 'name')
         .populate('country', 'name')
-        .populate('service', 'name')
+        // .populate('service', 'name')
         .exec((err, data) => {
           if (err) {
             reject(err);
