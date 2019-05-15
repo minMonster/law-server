@@ -3,6 +3,7 @@ const addMessage = require('../controller/messageBoardController.js').addMessage
 const addLaw = require('../controller/addLaw.js').addLaw;
 const getLawList = require('../controller/lawList.js').getLawList;
 const getCountry = require('../controller/addLaw.js').getCountry;
+const delll = require('../controller/addLaw.js').delll;
 const getLawDetail = require('../controller/lawList.js').getLawDetail;
 const getService = require('../controller/getService.js').getService;
 const Demo = require('../controller/addLaw.js').Demo;
@@ -19,5 +20,5 @@ router.get('/area-list', getCountry);
 router.get('/service-list', getService);
 router.get('/law-detail', getLawDetail);
 router.get('/demo', Demo);
-
+router.post('/delll', delll);
 module.exports = router;

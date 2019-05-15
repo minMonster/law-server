@@ -335,6 +335,43 @@ const Demo = async (ctx) => {
     a: jsonData
   };
 };
+const delll = async (ctx) => {
+  let id_area = ctx.request.body.id_area;
+  let id_country = ctx.request.body.id_country;
+  let id_law = ctx.request.body.id_law;
+  await new Promise((resolve, reject) => {
+    LawArea.remove({_id: id_area}, (e, data) => {
+      if (e) {
+        reject(e);
+      } else {
+        resolve(data);
+      }
+    });
+  })
+  await new Promise((resolve, reject) => {
+    LawCountry.remove({_id: id_country}, (e, data) => {
+      if (e) {
+        reject(e);
+      } else {
+        resolve(data);
+      }
+    });
+  })
+  await new Promise((resolve, reject) => {
+    LawDetail.remove({_id: id_law}, (e, data) => {
+      if (e) {
+        reject(e);
+      } else {
+        resolve(data);
+      }
+    });
+  }).then(res => {
+    ctx.status = 200;
+    ctx.body = {
+      a: '删除年初'
+    }
+  })
+};
 module.exports = {
   findLawArea,
   findLawCountry,
@@ -343,5 +380,6 @@ module.exports = {
   addLawCountry,
   addLawDetail,
   getCountry,
-  Demo
+  Demo,
+  delll
 };
