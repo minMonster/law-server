@@ -173,7 +173,7 @@ const addLawDetail = async (params) => {
 const getCountry = async (ctx) => {
   let area = [];
   await new Promise((resolve, reject) => {
-    LawArea.find({area: '5ce53d108cd3ac0b0043e905'}, (err, data) => {
+    LawArea.find({'_id': '5ce53d108cd3ac0b0043e905'}, (err, data) => {
       if (err) {
         reject(err);
       }
