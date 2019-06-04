@@ -19,6 +19,6 @@ router.get('/law-list', getLawList);
 router.get('/area-list', getCountry);
 router.get('/service-list', getService);
 router.get('/law-detail', getLawDetail);
-router.get('/demo', Demo);
+router.get('/add-law-json', Demo);
 router.post('/delll', delll);
 module.exports = router;

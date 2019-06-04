@@ -14,7 +14,7 @@ const lawDetail = mongoose.Schema({
   // service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LawService' }],
   service: {
     type: String,
-    delete: ''
+    default: ''
   },
   name: {
     type: String,
@@ -22,27 +22,27 @@ const lawDetail = mongoose.Schema({
   },
   logo: {
     type: String,
-    delete: ''
+    default: ''
   },
   address: {
     type: String,
-    delete: ''
+    default: ''
   },
   phone: {
     type: String,
-    delete: ''
+    default: ''
   },
   email: {
     type: String,
-    delete: ''
+    default: ''
   },
   website: {
     type: String,
-    delete: ''
+    default: ''
   },
   introduce: {
     type: String,
-    delete: ''
+    default: ''
   },
   created_time: {
     type: Number,
@@ -50,7 +50,15 @@ const lawDetail = mongoose.Schema({
   },
   fax: {
     type: String,
-    delete: ''
+    default: ''
+  },
+  hot: {
+    type: String,
+    default: ''
+  },
+  shorthand: {
+    type: String,
+    default: ''
   }
 });
 //根据schema生成model

@@ -112,6 +112,7 @@ const addLawCountry = async (params) => {
   const lawCountry = LawCountry({
     name: params.name,
     area: params.area_id,
+    shorthand: params.shorthand,
     created_time: moment().unix()
   });
   return new Promise((resolve, reject) => {
@@ -147,6 +148,8 @@ const addLawDetail = async (params) => {
     return Promise.resolve(old);
   }
   const lawDetail = LawDetail({
+    hot: params.hot,
+    shorthand: params.shorthand,
     name: params.name,
     area: params.area_id,
     country: params.country_id,
@@ -314,8 +317,10 @@ const Demo = async (ctx) => {
       //   return value._id;
       // });
       lawArea = await addLawArea(body.law_area);
-      lawCountry = await addLawCountry({name: body.law_country, area_id: lawArea._id});
+      lawCountry = await addLawCountry({name: body.law_country, area_id: lawArea._id, shorthand: body.law_shorthand});
       lawDetail = await addLawDetail({
+        hot: body.law_hot,
+        shorthand: body.law_shorthand,
         name: body.law_name,
         area_id: lawArea._id,
         country_id: lawCountry._id,

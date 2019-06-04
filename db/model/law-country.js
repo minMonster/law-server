@@ -9,6 +9,10 @@ const lawCountry = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'LawArea' //这里要写你指向的数据库表名字
   },
+  shorthand: {
+    type: String,
+    default: ''
+  },
   created_time: {
     type: Number,
     required: true

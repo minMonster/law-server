@@ -18,17 +18,19 @@ console.log(data[1]);
 
 let newArr = data[0]['data'].map(value => {
   let temple = {};
-  temple.law_area = value[0];
-  temple.law_country = value[1];
-  temple.law_logo = value[2];
-  temple.law_name = value[3];
-  temple.law_address = value[4];
-  temple.law_phone = value[5];
-  temple.law_fax = value[6];
-  temple.law_email = value[7];
-  temple.law_service = value[8];
-  temple.law_website = value[9];
-  temple.law_introduce = value[10];
+  temple.law_hot = value[0];
+  temple.law_area = value[1];
+  temple.law_shorthand = value[2];
+  temple.law_country = value[3];
+  temple.law_logo = value[4];
+  temple.law_name = value[5];
+  temple.law_address = value[6];
+  temple.law_phone = value[7];
+  temple.law_fax = value[8];
+  temple.law_email = value[9];
+  temple.law_service = value[10];
+  temple.law_website = value[11];
+  temple.law_introduce = value[12];
   return temple;
 });
 fs.writeFile('./demo.json', JSON.stringify(newArr), function(err) {
