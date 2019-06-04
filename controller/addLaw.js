@@ -193,8 +193,12 @@ const getCountry = async (ctx) => {
   let newArea = area.map(async (areaValue) => {
     let newVal = JSON.parse(JSON.stringify(areaValue));
     newVal.country = [];
+    let countryPrams = {area: newVal['_id']};
+    if (body.HOT) {
+      countryPrams['shorthand'] = {$ne: ''};
+    }
     await new Promise((resolve, reject) => {
-      LawCountry.find({area: newVal['_id']}, (err, data) => {
+      LawCountry.find(countryPrams, (err, data) => {
         if (err) {
           reject(err);
         }
@@ -210,6 +214,11 @@ const getCountry = async (ctx) => {
     area = res;
   });
   ctx.status = 200;
+  // let returnData = [];
+  // console.log(area)
+  // area.forEach(i => {
+  //   returnData.concat(i.country)
+  // });
   ctx.body = {
     data: area
   };
