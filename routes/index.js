@@ -21,4 +21,6 @@ router.get('/service-list', getService);
 router.get('/law-detail', getLawDetail);
 router.get('/add-law-json', Demo);
 router.post('/delll', delll);
+router.post('/commit-log', require('../controller/addCommitLog.js').addCommitLog);
+router.post('/commit-log-list', require('../controller/addCommitLog.js').getCommitLog);
 module.exports = router;

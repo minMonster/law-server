@@ -3,6 +3,7 @@ const LawArea = require('./model/law-area');
 const LawCountry = require('./model/law-country');
 const LawDetail = require('./model/law-detail');
 const LawService = require('./model/law-service');
+const LawCommitLog = require('./model/law-commit-log');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/autrch-serve');
 let db = mongoose.connection;
@@ -19,5 +20,6 @@ module.exports = {
   LawArea,
   LawCountry,
   LawDetail,
-  LawService
+  LawService,
+  LawCommitLog
 };
